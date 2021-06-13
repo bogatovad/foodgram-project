@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block title %}Об авторе проекта{% endblock %}
+{% block css %}
+<link rel="stylesheet" href='{% static "pages/index.css" %}'>
+{% endblock %}
+{% block header %}
+  {% include 'header_auth.html' %}
+{% endblock %}
+{% block content %}
+<main style="margin-bottom: 29%;">
+  <div class="row">
+    <div class="col-md-3 mb-3 mt-1" style="margin-left: 40%;">
+      <div class="card">
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="h3">
+                Django
+              </div>
+            </li>
+            <hr>
+            <li class="list-group-item">
+              <div class="h6 text-muted">
+                Django REST framework 
+              </div>
+            </li>
+            <hr>
+            <li class="list-group-item">
+              <div class="h6 text-muted">
+                Docker
+              </div>
+            </li>
+            <hr>
+            <li class="list-group-item">
+              <div class="h6 text-muted">
+                Nginx
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

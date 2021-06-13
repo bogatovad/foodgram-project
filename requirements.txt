@@ -1,0 +1,8 @@
+django
+pillow
+djangorestframework
+django-filter
+django-cors-headers
+django-ranged-fileresponse
+python-magic
+sorl-thumbnail

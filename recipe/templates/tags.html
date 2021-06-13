@@ -1,0 +1,20 @@
+<ul class="tags">
+    <li class="tags__item">
+        <a id="breakfast" {% if tag == 'Завтрак' %} class="tags__checkbox tags__checkbox_style_orange tags__checkbox_active" 
+        {% else %} class="tags__checkbox tags__checkbox_style_orange tags__checkbox" {% endif %} {% if url == 'author_recipe' %} href="{% url url author_id %}?tag=Завтрак">
+    {% else %} href="{% url url %}?tag=Завтрак"> {% endif %}</a>
+        <span for="lunch" class="tags__label">Завтрак</span>
+    </li>
+    <li class="tags__item">
+        <a id="breakfast" {% if tag == 'Обед' %} class="tags__checkbox tags__checkbox_style_green tags__checkbox_active" 
+        {% else %} class="tags__checkbox tags__checkbox_style_green tags__checkbox" {% endif %} {% if url == 'author_recipe' %} href="{% url url author_id %}?tag=Обед">
+    {% else %} href="{% url url %}?tag=Обед"> {% endif %}</a>
+        <span for="lunch" class="tags__label">Обед</span>
+    </li>
+    <li class="tags__item">
+        <a id="breakfast" {% if tag == 'Ужин' %} class="tags__checkbox tags__checkbox_style_purple tags__checkbox_active" 
+        {% else %} class="tags__checkbox tags__checkbox_style_purple tags__checkbox" {% endif %} {% if url == 'author_recipe' %} href="{% url url author_id %}?tag=Ужин">
+    {% else %} href="{% url url %}?tag=Ужин"> {% endif %}</a>
+        <span for="lunch" class="tags__label">Ужин</span>
+    </li>
+</ul>

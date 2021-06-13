@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load user_filters %}
+{% block title %}Избранное{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'pages/index.css' %}">
+{% endblock %}
+
+{% block header %}
+    {% include 'header_auth.html' %}
+{% endblock %}
+{% block content %}
+<main class="main container">
+    <div class="main__header">
+        <h1 class="main__title">Избранное</h1>
+        {% include 'tags.html' with url='favorite' %}
+    </div>
+    <div class="card-list">
+        {% for favorite in page %}
+        <div class="card" data-id="{{favorite.recipe.id}}">
+            <a href="#" class="link" target="_blank"><img src="{% static 'images/testCardImg.png' %}" alt="Какой-то текст" class="card__image"></a>
+            <div class="card__body">
+                <a class="card__title link" href="{% url 'single_recipe' favorite.recipe.id %}" target="_blank">{{favorite.recipe.title}}</a>
+                <ul class="card__items">
+                    {% for tag in favorite.recipe.tags.all %}
+                    <li class="card__item"><span class="badge badge_style_{{tag.color}}">{{tag.title}}</span></li>
+                    {% endfor %}
+                </ul>
+                <div class="card__items card__items_column">
+                    <p class="card__text"><span class="icon-time"></span> {{favorite.recipe.time_to_cook}} мин.</p>
+                    <p class="card__text"><span class="icon-user"></span> {{favorite.recipe.author}}</p>
+                </div>
+            </div>
+            <div class="card__footer">
+                {% if favorite.recipe|in_list:user.shop_list.all %}
+                <button class="button button_style_light-blue-outline" name="purchases"><span class="icon-check button__icon"></span> Рецепт добавлен</button>
+                {% else %}
+                <button class="button button_style_light-blue" name="purchases" data-out><span class="icon-plus button__icon"></span>Добавить в покупки</button>
+                {% endif %}
+                <button class="button button_style_none" name="favorites"><span class="icon-favorite icon-favorite_active"></span></button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% include 'paginator.html' with tag=tag %}
+</main>
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/components/MainCards.js' %}"></script>
+<script src="{% static 'js/components/Purchases.js' %}"></script>
+<script src="{% static 'js/components/Favorites.js' %}"></script>
+<script src="{% static 'js/config/config.js' %}"></script>
+<script src="{% static 'js/components/CardList.js' %}"></script>
+<script src="{% static 'js/components/Header.js' %}"></script>
+<script src="{% static 'js/api/Api.js' %}"></script>
+<script src="{% static 'favorite.js' %}"></script>
+{% endblock %}
