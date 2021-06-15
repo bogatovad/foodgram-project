@@ -60,7 +60,31 @@
                             <span> Оливки 10шт.</span>
                             <span class="form__field-item-delete"></span>
                             <input id="nameIngredient_3" name="nameIngredient_3" type="hidden" value="Оливки">
-                            <input id="valueIngredient_3" name="valueIngredient_3" type="hidden" value="10">
+                            {% if favorite %}
+                            <div class="card__footer">
+                                {% if favorite.recipe|in_list:user.shop_list.all %}
+                                <button class="button button_style_light-blue-outline" name="purchases"><span class="icon-check button__icon"></span> Рецепт добавлен</button>
+                                {% else %}
+                                <button class="button button_style_light-blue" name="purchases" data-out><span class="icon-plus button__icon"></span>Добавить в покупки</button>
+                                {% endif %}
+                                <button class="button button_style_none" name="favorites"><span class="icon-favorite icon-favorite_active"></span></button>
+                            </div>
+                            {% else %}
+                            <div class="card__footer">
+                                {% if user.is_authenticated %}
+                                    {% if recipe|in_list:user.shop_list.all %}
+                                    <button class="button button_style_light-blue-outline" name="purchases"><span class="icon-check button__icon"></span> Рецепт добавлен</button>
+                                    {% else %}
+                                    <button class="button button_style_light-blue" name="purchases" data-out><span class="icon-plus button__icon"></span>Добавить в покупки</button>
+                                    {% endif %}
+                                    {% if recipe.favorites|in_favorites_list:user %}
+                                    <button class="button button_style_none" name="favorites"><span class="icon-favorite icon-favorite_active"></span></button>
+                                    {% else %}
+                                    <button class="button button_style_none" name="favorites" data-out><span class="icon-favorite"></span></button>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            {% endif %}                <input id="valueIngredient_3" name="valueIngredient_3" type="hidden" value="10">
                             <input id="unitsIngredient_3" name="unitsIngredient_3" type="hidden" value="шт.">
                         </div>
                         <div class="form__field-item-ingredient" id="ing_2">
