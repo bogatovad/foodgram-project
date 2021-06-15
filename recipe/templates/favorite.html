@@ -17,7 +17,7 @@
     </div>
     <div class="card-list">
         {% for favorite in page %}
-            {% include 'recipe.html' with recipe=favorite.recipe favorite=fafavorite %}
+            {% include 'recipe.html' with recipe=favorite.recipe favorite=favorite %}
         {% endfor %}
     </div>
     {% include 'paginator.html' with tag=tag %}
