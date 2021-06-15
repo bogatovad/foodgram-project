@@ -12,9 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-import environ
-env = environ.Env()
-environ.Env.read_env()
 from django.urls.conf import path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,9 +27,9 @@ LOGOUT_REDIRECT_URL = 'index'
 SECRET_KEY = 'django-insecure-i-gwc3l(6euh1u#_b1p$k)ck47#9##of#z9#h%$hv+d$p+98md'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['178.154.197.184','blogart.tk','www.blogart.tk']
+ALLOWED_HOSTS = ['178.154.197.184','blogart.tk','www.blogart.tk', '127.0.0.1', 'webserv']
 
 
 # Application definition
@@ -102,8 +99,15 @@ WSGI_APPLICATION = 'grocery_assistant.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db(),
-}
+    'default': {
+        'ENGINE': os.environ.get('DB_ENGINE'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
+    }
+} 
 
 
 # Password validation
@@ -138,10 +142,13 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_files_dir'),]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/api/.*$'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
