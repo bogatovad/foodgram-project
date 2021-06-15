@@ -1,7 +1,6 @@
 from django.urls import path
 from .views import (PurchaseView, FavoritesView,
                     SubscriptionsView, IngredientsView)
-from django.urls import path
 from rest_framework_simplejwt.views import TokenRefreshView
 
 auth_paths = [
