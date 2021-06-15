@@ -57,8 +57,8 @@ class Tag(models.Model):
 class Recipe(models.Model):
     """Model for recipe."""
     author = models.ForeignKey(
-        User, 
-        on_delete=models.CASCADE, 
+        User,
+        on_delete=models.CASCADE,
         related_name="recipes",
         verbose_name='Автор',)
     title = models.CharField(verbose_name="Название рецепта", max_length=200)
@@ -73,7 +73,7 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(
         Ingredient,
         through="RecipeIngredient",
-        through_fields=('recipe','ingredient'),
+        through_fields=('recipe', 'ingredient'),
         verbose_name="Ингредиенты"
     )
     pub_date = models.DateTimeField(
@@ -92,7 +92,7 @@ class Recipe(models.Model):
             MinValueValidator(1),
         ]
     )
-    
+
     class Meta:
         verbose_name = "Рецепт"
         verbose_name_plural = "Рецепты"
@@ -109,8 +109,8 @@ class RecipeIngredient(models.Model):
         related_name="recipe"
     )
     ingredient = models.ForeignKey(
-        Ingredient, 
-        on_delete=models.CASCADE, 
+        Ingredient,
+        on_delete=models.CASCADE,
         related_name="recipe_ing"
     )
     amount = models.FloatField(
@@ -126,6 +126,7 @@ class RecipeIngredient(models.Model):
 
     def __str__(self):
         return f"{self.recipe}, {self.ingredient}, {self.amount}"
+
 
 class Follow(models.Model):
     """Model for follow."""
@@ -146,6 +147,7 @@ class Follow(models.Model):
     class Meta:
         verbose_name = "Подписка"
         verbose_name_plural = "Подписки"
+
 
 class Favorite(models.Model):
     user = models.ForeignKey(
@@ -174,6 +176,7 @@ class Favorite(models.Model):
         ]
         verbose_name = "Объект избранного"
         verbose_name_plural = "Объекты избранного"
+
 
 class ShopList(models.Model):
     user = models.ForeignKey(
