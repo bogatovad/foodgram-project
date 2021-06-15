@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-
+import environ
+env = environ.Env()
+environ.Env.read_env()
 from django.urls.conf import path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,9 +30,9 @@ LOGOUT_REDIRECT_URL = 'index'
 SECRET_KEY = 'django-insecure-i-gwc3l(6euh1u#_b1p$k)ck47#9##of#z9#h%$hv+d$p+98md'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['178.154.197.184','blogart.tk','www.blogart.tk']
 
 
 # Application definition
@@ -100,10 +102,7 @@ WSGI_APPLICATION = 'grocery_assistant.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': env.db(),
 }
 
 

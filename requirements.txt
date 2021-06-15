@@ -6,3 +6,5 @@ django-cors-headers
 django-ranged-fileresponse
 python-magic
 sorl-thumbnail
+psycopg2-binary
+django-environ 
