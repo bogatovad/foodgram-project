@@ -15,7 +15,7 @@ class PurchaseView(APIView):
         return Response({"success": True})
 
     def delete(self, request, id):
-        shop = ShopList.objects.filter(user=request.user, recipe=id).delete()
+        ShopList.objects.filter(user=request.user, recipe=id).delete()
         return Response({"success": True})
 
 

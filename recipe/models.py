@@ -1,8 +1,6 @@
-from typing import OrderedDict
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.core.validators import MaxValueValidator, MinValueValidator
-from django.db.models import constraints
+from django.core.validators import MinValueValidator
 from django.db.models.deletion import CASCADE
 
 User = get_user_model()

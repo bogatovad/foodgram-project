@@ -1,7 +1,8 @@
 from django.contrib import admin
-from .models import Tag, Follow,Favorite,ShopList
+from .models import Tag, Follow, Favorite, ShopList
 from django.contrib.admin import register
 from . import models
+
 
 @register(models.Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
@@ -16,6 +17,7 @@ class IngredientAdmin(admin.ModelAdmin):
         'unit',
     )
 
+
 @register(models.RecipeIngredient)
 class RecipeIngredientAdmin(admin.ModelAdmin):
     fields = (
@@ -28,10 +30,12 @@ class RecipeIngredientAdmin(admin.ModelAdmin):
         'recipe',
     )
 
+
 class RecipeIngredientInline(admin.TabularInline):
     model = models.RecipeIngredient
     min_num = 1
     extra = 0
+
 
 @register(models.Recipe)
 class RecipeAdmin(admin.ModelAdmin):
@@ -52,6 +56,7 @@ class RecipeAdmin(admin.ModelAdmin):
     inlines = (
         RecipeIngredientInline,
     )
+
 
 admin.site.register(Tag)
 admin.site.register(Follow)
