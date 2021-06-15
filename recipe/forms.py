@@ -1,4 +1,3 @@
-from attr import fields
 from django import forms
 from .models import Recipe, Ingredient
 from django.forms import Select

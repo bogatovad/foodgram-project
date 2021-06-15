@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 {% load user_filters %}
 <div class="card" data-id="{{recipe.id}}">
     {% load thumbnail %}
@@ -19,6 +19,16 @@
             <p class="card__text"><span class="icon-user"></span> <a href="{% url 'author_recipe' recipe.author.id %}" style="color: black">{{recipe.author}}</a></p>
         </div>
     </div>
+    {% if favorite %}
+    <div class="card__footer">
+        {% if favorite.recipe|in_list:user.shop_list.all %}
+        <button class="button button_style_light-blue-outline" name="purchases"><span class="icon-check button__icon"></span> Рецепт добавлен</button>
+        {% else %}
+        <button class="button button_style_light-blue" name="purchases" data-out><span class="icon-plus button__icon"></span>Добавить в покупки</button>
+        {% endif %}
+        <button class="button button_style_none" name="favorites"><span class="icon-favorite icon-favorite_active"></span></button>
+    </div>
+    {% else %}
     <div class="card__footer">
         {% if user.is_authenticated %}
             {% if recipe|in_list:user.shop_list.all %}
@@ -33,4 +43,5 @@
             {% endif %}
         {% endif %}
     </div>
+    {% endif %}
 </div>
