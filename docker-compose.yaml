@@ -1,23 +1,23 @@
 version: '3.3'
 
 services:
-  dbserv:
+  dbservice:
     image: postgres:12.4
     volumes:
       - postgres_data_:/var/lib/postgresql/data/
     env_file:
       - ./.env
-  webserv:
+  webservice:
     image: bogatovatremzz/productive_assistant 
     restart: always 
     depends_on:
-      - dbserv
+      - dbservice
     volumes: 
       - static_value:/code/static/
       - media_value:/code/media/
     env_file:
       - ./.env
-  nginxserv:
+  nginxservice:
     image: nginx:1.19.3
     ports:
       - "80:80"
@@ -26,7 +26,7 @@ services:
       - static_value:/var/html/static/
       - media_value:/var/html/media/
     depends_on: 
-      - webserv
+      - webservice
 volumes:
   postgres_data_:
   static_value:
