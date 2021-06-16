@@ -1,7 +1,6 @@
 # Статус Workflow
 ![example workflow](https://github.com/bogatovad/foodgram-project/actions/workflows/foodgram_workflow.yml/badge.svg)
-# foodgram-project
-foodgram-project
+### foodgram-project
 http://178.154.197.184
 ### Админка для базы данных
 http://178.154.197.184/admin/
