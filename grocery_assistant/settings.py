@@ -41,13 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
+    'sorl.thumbnail',
     'users',
     'recipe',
     'about',
     'api',
-    'rest_framework',
-    'corsheaders',
-    'sorl.thumbnail',
 ]
 
 APPEND_SLASH=False
