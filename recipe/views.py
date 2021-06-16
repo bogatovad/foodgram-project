@@ -34,7 +34,6 @@ def my_follow(request):
     paginator = Paginator(data, 10)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
-    print(request.user)
     return render(request, 'myFollow.html',
                   {'page': page})
 
