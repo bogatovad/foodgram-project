@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   dbserv:
-    image: postgres:12.4
+    image: postgres:13.3
     volumes:
       - postgres_data_:/var/lib/postgresql/data/
     env_file:
