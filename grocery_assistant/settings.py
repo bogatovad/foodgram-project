@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['178.154.197.184','blogart.tk','www.blogart.tk', '127.0.0.1', '
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
