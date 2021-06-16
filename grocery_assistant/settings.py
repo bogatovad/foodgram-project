@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-i-gwc3l(6euh1u#_b1p$k)ck47#9##of#z9#h%$hv+d$p+98md
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['178.154.197.184','blogart.tk','www.blogart.tk', '127.0.0.1', 'webserv']
+ALLOWED_HOSTS = ['178.154.197.184','blogart.tk','www.blogart.tk', '127.0.0.1', 'webservice']
 
 
 # Application definition
