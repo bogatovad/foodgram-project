@@ -28,6 +28,6 @@ services:
     depends_on: 
       - webserv
 volumes:
-  postgres_data:
+  postgres_data_:
   static_value:
   media_value:
