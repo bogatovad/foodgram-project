@@ -7,8 +7,8 @@ from django.views.generic import TemplateView
 
 from recipe.views import page_not_found, server_error
 
-handler404 = "recipe.views.page_not_found"
-handler500 = "recipe.views.server_error" 
+handler404 = "recipe.views.page_not_found" #noqa
+handler500 = "recipe.views.server_error" #noqa
 
 urlpatterns = [
     path("admin/", admin.site.urls),

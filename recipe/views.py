@@ -1,4 +1,3 @@
-import magic
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models.query import QuerySet
@@ -6,8 +5,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import RecipeForm
 from .models import Recipe, RecipeIngredient, ShopList, User
-from .utils import (count_total_ingredients, create_response, get_ingredients,
-                    get_tags, is_tag, is_tag_favorite)
+from .utils import (count_total_ingredients, create_response,
+                    is_tag, is_tag_favorite)
 
 
 def get_paginator(request, data: QuerySet):
