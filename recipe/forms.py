@@ -11,11 +11,13 @@ def create_ingredients(ingredients, recipe):
             ingredient=ingredient[0],
             amount=ingredient[1])
 
+
 def create_tags(tags, recipe):
-    for tag in recipe.tags.all(): 
+    for tag in recipe.tags.all():
         recipe.tags.remove(tag)
     for tag in tags:
         recipe.tags.add(tag)
+
 
 class RecipeForm(forms.ModelForm):
     def save(self, commit=True):

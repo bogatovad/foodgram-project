@@ -28,7 +28,8 @@ def get_tags(data):
     return [get_object_or_404(Tag, pk=int(number_key))
             for number_key in dict(data)["tags"]]
 
-def create_response(request, result_ingredients:dict):
+
+def create_response(request, result_ingredients: dict):
     content = "Список ингредиентов для покупок\n\n"
 
     for ingredient, value in result_ingredients.items():
@@ -39,9 +40,10 @@ def create_response(request, result_ingredients:dict):
     response["Content-Disposition"] = 'attachment; filename="%s"' % path_file
     return response
 
-def count_total_ingredients(shop_list:list):
+
+def count_total_ingredients(shop_list: list):
     result_ingredients = {}
-    
+
     for item in shop_list:
         for ingredient in item.recipe.ingredients.all():
             amount = get_object_or_404(
