@@ -6,11 +6,6 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'pages/shopList.css' %}">
 {% endblock %}
-
-{% block header %}
-    {% include 'header_auth.html' %}
-{% endblock %}
-
 {% block content %}
 <main class="main container">
     <div class="main__header">
@@ -19,7 +14,7 @@
     <div class="card-list card-list_column">
         <ul class="shopping-list">
             {% for shop in page %}
-            <li class="shopping-list__item" data-id="{{shop.recipe.id}}">
+            <li class="shopping-list__item" data-id="{{ shop.recipe.id }}">
                 <div class="recipe recipe_reverse">
                 {% load thumbnail %}
                 {% thumbnail shop.recipe.image "140" crop="center" upscale=True as im %}
@@ -27,8 +22,8 @@
                     <img src="{{ im.url }}" alt="{{ recipe.title }}" class="recipe__image recipe__image_big">
                 </a>
                 {% endthumbnail %}
-                    <h3 class="recipe__title">{{shop.recipe.title}}</h3>
-                    <p class="recipe__text"><span class="icon-time"></span> {{shop.recipe.time_to_cook}} мин.</p>
+                    <h3 class="recipe__title">{{ shop.recipe.title }}</h3>
+                    <p class="recipe__text"><span class="icon-time"></span> {{ shop.recipe.time_to_cook }} мин.</p>
                 </div>
                 <a href="#" class="shopping-list__button link">Удалить</a>
             </li>

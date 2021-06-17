@@ -1,8 +1,9 @@
 from rest_framework.generics import get_object_or_404
-from recipe.models import Follow, Ingredient, ShopList, Recipe, Favorite, User
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from recipe.models import Favorite, Follow, Ingredient, Recipe, ShopList, User
 
 
 class PurchaseView(APIView):
@@ -38,21 +39,18 @@ class SubscriptionsView(APIView):
 
     def post(self, request):
         author_id = request.data.get("id")
-        author = User.objects.get(id=author_id)
+        author = get_object_or_404(User, id=author_id)
         Follow.objects.get_or_create(user=request.user, author=author)
         return Response({"success": True})
 
     def delete(self, request, id):
-        User.objects.get(id=id)
         Follow.objects.filter(user=request.user, author=id).delete()
         return Response({"success": True})
 
 
 class IngredientsView(APIView):
-    # permission_classes = (IsAuthenticated,)
-
     def get(self, request):
         query = request.GET.get("query")
         recipes = Ingredient.objects.filter(
-            title__startswith=query).values('title', 'unit')
+            title__startswith=query).values("title", "unit")
         return Response(recipes)

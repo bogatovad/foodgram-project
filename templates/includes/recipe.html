@@ -8,15 +8,15 @@
     </a>
     {% endthumbnail %}
     <div class="card__body">
-        <a class="card__title link" href="{% url 'single_recipe' recipe.id %}" target="_blank">{{recipe.title}}</a>
+        <a class="card__title link" href="{% url 'single_recipe' recipe.id %}" target="_blank">{{ recipe.title }}</a>
         <ul class="card__items">
             {% for tag in recipe.tags.all %}
-            <li class="card__item"><span class="badge badge_style_{{tag.color}}">{{tag.title}}</span></li>
+            <li class="card__item"><span class="badge badge_style_{{ tag.color }}">{{ tag.title }}</span></li>
             {% endfor %}
         </ul>
         <div class="card__items card__items_column">
-            <p class="card__text"><span class="icon-time"></span> {{recipe.time_to_cook}} мин</p>
-            <p class="card__text"><span class="icon-user"></span> <a href="{% url 'author_recipe' recipe.author.id %}" style="color: black">{{recipe.author}}</a></p>
+            <p class="card__text"><span class="icon-time"></span> {{ recipe.time_to_cook }} мин</p>
+            <p class="card__text"><span class="icon-user"></span> <a href="{% url 'author_recipe' recipe.author.id %}" style="color: black">{{ recipe.author }}</a></p>
         </div>
     </div>
     {% if favorite %}

@@ -4,22 +4,13 @@
 {% block css %}
 <link rel="stylesheet" href="{% static '/pages/index.css' %}">
 {% endblock %}
-
-{% block header %}
-    {% if user.is_authenticated %}
-        {% include 'header_auth.html' %}
-    {% else %}
-        {% include 'header_not_auth.html' %}
-    {% endif %}
-{% endblock %}
-
 {% block content %}
 <main class="main container">
     <div class="main__header">
-        <h1 class="main__title">{{author}}</h1>
+        <h1 class="main__title">{{ author }}</h1>
         {% include 'tags.html' with url='author_recipe' author_id=author.id %}
     </div>
-<div class="author-subscribe" data-author="{{author.id}}">
+<div class="author-subscribe" data-author="{{ author.id }}">
 {% if user.is_authenticated %}
     {% if user != author %}
         {% if not am_i_follower %}
@@ -38,9 +29,6 @@
 {% include 'paginator.html' %}
 </main>
 {% endblock %}
-
-{% include 'footer.html' %}
-
 {% block js %}
 <script src="{% static 'js/components/MainCards.js' %}"></script>
 <script src="{% static 'js/components/Purchases.js' %}"></script>

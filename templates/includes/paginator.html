@@ -12,12 +12,12 @@
         {% endif %}
         {% for i in page.paginator.page_range %}
             {% if page.number == i %}
-              <li class="pagination__item pagination__item_active"><a class="pagination__link link">{{i}}</a></li>
+              <li class="pagination__item pagination__item_active"><a class="pagination__link link">{{ i }}</a></li>
               {% else %}
                 {% if tag %}
-                <li class="pagination__item"><a class="pagination__link link" href="?tag={{ tag }}&page={{ i }}">{{i}}</a></li>
+                <li class="pagination__item"><a class="pagination__link link" href="?tag={{ tag }}&page={{ i }}">{{ i }}</a></li>
                 {% else %}
-                <li class="pagination__item"><a class="pagination__link link" href="?page={{ i }}">{{i}}</a></li>
+                <li class="pagination__item"><a class="pagination__link link" href="?page={{ i }}">{{ i }}</a></li>
                 {% endif %}
             {% endif %}
         {% endfor %}

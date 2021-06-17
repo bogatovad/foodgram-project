@@ -1,6 +1,7 @@
-from django.core.management.base import BaseCommand
 import csv
 import os
+
+from django.core.management.base import BaseCommand
 
 from grocery_assistant.settings import BASE_DIR
 from recipe.models import Ingredient

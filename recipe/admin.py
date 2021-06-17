@@ -1,33 +1,34 @@
 from django.contrib import admin
-from .models import Tag, Follow, Favorite, ShopList
 from django.contrib.admin import register
+
 from . import models
+from .models import Favorite, Follow, ShopList, Tag
 
 
 @register(models.Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
     list_display = (
-        'title',
-        'unit',
+        "title",
+        "unit",
     )
     search_fields = (
-        'title',
+        "title",
     )
     list_filters = (
-        'unit',
+        "unit",
     )
 
 
 @register(models.RecipeIngredient)
 class RecipeIngredientAdmin(admin.ModelAdmin):
     fields = (
-        'ingredient',
-        'recipe',
-        'count'
+        "ingredient",
+        "recipe",
+        "count"
     )
     search_fields = (
-        'ingredient',
-        'recipe',
+        "ingredient",
+        "recipe",
     )
 
 
@@ -40,18 +41,18 @@ class RecipeIngredientInline(admin.TabularInline):
 @register(models.Recipe)
 class RecipeAdmin(admin.ModelAdmin):
     list_display = (
-        'title',
-        'author',
-        'pub_date',
+        "title",
+        "author",
+        "pub_date",
     )
     search_fields = (
-        'name',
+        "name",
     )
     list_filter = (
-        'author',
+        "author",
     )
     autocomplete_fields = (
-        'ingredients',
+        "ingredients",
     )
     inlines = (
         RecipeIngredientInline,
