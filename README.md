@@ -15,6 +15,7 @@ http://178.154.197.184/admin/
 3. Docker
 4. Postgesql
 5. Nginx
+6. CI\CD
 ### Установка docker
 Установите Docker в свою систему следуя инструкциям документации
 https://docs.docker.com/get-docker/
