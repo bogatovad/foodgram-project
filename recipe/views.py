@@ -5,8 +5,8 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import RecipeForm
 from .models import Recipe, RecipeIngredient, ShopList, User
-from .utils import (count_total_ingredients, create_response,
-                    is_tag, is_tag_favorite)
+from .utils import (count_total_ingredients, create_response, is_tag,
+                    is_tag_favorite)
 
 
 def get_paginator(request, data: QuerySet):
@@ -63,7 +63,7 @@ def edit_recipe(request, username: str, id_recipe: int):
     username  -- Author's username of recipe.
     id_recipe -- recipe's id which author is editing.
     """
-    recipe = Recipe.objects.get(author__username=username, id=id_recipe)
+    recipe = get_object_or_404(Recipe, author__username=username, id=id_recipe)
     form = RecipeForm(
         request.POST or None,
         files=request.FILES or None,
@@ -97,7 +97,7 @@ def favorite(request):
 
 def single_recipe(request, id: int):
     """Return singe page's recipe."""
-    recipe = Recipe.objects.get(id=id)
+    recipe = get_object_or_404(Recipe, id=id)
     ingredients = RecipeIngredient.objects.filter(recipe=recipe)
     context = {"recipe": recipe, "ingredients": ingredients}
 
@@ -143,16 +143,3 @@ def save_shop_list(request):
 def delete_recipe(request, id_recipe: int):
     Recipe.objects.filter(id=id_recipe).delete()
     return redirect("index")
-
-
-def page_not_found(request, exception):
-    return render(
-        request,
-        "404.html",
-        {"path": request.path},
-        status=404
-    )
-
-
-def server_error(request):
-    return render(request, "500.html", status=500)

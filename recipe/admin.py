@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.contrib.admin import register
 
 from . import models
-from .models import Favorite, Follow, ShopList, Tag
 
 
 @register(models.Ingredient)
@@ -59,7 +58,7 @@ class RecipeAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(Tag)
-admin.site.register(Follow)
-admin.site.register(Favorite)
-admin.site.register(ShopList)
+admin.site.register(models.Tag)
+admin.site.register(models.Follow)
+admin.site.register(models.Favorite)
+admin.site.register(models.ShopList)

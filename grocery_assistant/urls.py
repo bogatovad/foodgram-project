@@ -5,10 +5,11 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
 
-from recipe.views import page_not_found, server_error
+from . import views
 
-handler404 = "recipe.views.page_not_found"  # noqa
-handler500 = "recipe.views.server_error"  # noqa
+handler404 = "grocery_assistant.views.page_not_found"  # noqa
+handler500 = "grocery_assistant.views.server_error"  # noqa
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -19,8 +20,8 @@ urlpatterns = [
     path("api/", include("api.urls")),
     path("redoc/", TemplateView.as_view(template_name="redoc.html"),
          name="redoc"),
-    path("404/", page_not_found),
-    path("500/", server_error),
+    path("404/", views.page_not_found),
+    path("500/", views.server_error),
 ]
 
 if settings.DEBUG:
