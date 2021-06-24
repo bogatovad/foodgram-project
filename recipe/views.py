@@ -15,7 +15,7 @@ def get_paginator(request, data: QuerySet):
     request -- HttpRequest's object
     data    -- Data that we need to split on pages
     """
-    paginator = Paginator(data, 5)
+    paginator = Paginator(data, 10)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
     return page

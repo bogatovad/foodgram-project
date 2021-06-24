@@ -5,6 +5,8 @@ from .models import Ingredient, RecipeIngredient, Tag
 
 
 def is_tag(request, all_recipes):
+    filters = request.GET.getlist("tag")
+    print(filters, request.path)
     if "tag" in request.GET:
         name_tag = request.GET["tag"]
         return name_tag, all_recipes.filter(tags__title=name_tag)
