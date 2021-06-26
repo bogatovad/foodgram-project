@@ -3,7 +3,7 @@
 <nav class="pagination" aria-label="Search results pages">
     <ul class="pagination__container">
         {% if page.has_previous %}
-            {% if tag != " " %}
+            {% if tag %}
             <li class="pagination__item"><a class="pagination__link link" href="?page={{ page.previous_page_number }}&tag={{ tag }}"><span class="icon-left"></span></a></li>
             {% else %}
             <li class="pagination__item"><a class="pagination__link link" href="?page={{ page.previous_page_number }}"><span class="icon-left"></span></a></li>
@@ -14,7 +14,7 @@
         {% for i in page.paginator.page_range %}
             {% if page.number == i %}
               <li class="pagination__item pagination__item_active"><a class="pagination__link link">{{ i }}</a></li>
-              {% else %}
+            {% else %}
                 {% if tag %}
                 <li class="pagination__item"><a class="pagination__link link" href="?page={{ i }}&tag={{ tag }}">{{ i }}</a></li>
                 {% else %}
