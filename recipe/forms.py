@@ -36,8 +36,9 @@ class RecipeForm(forms.ModelForm):
 
     def clean(self):
         ingredients = get_ingredients(self.data)
-        amount = ingredients[0][1]
-        if amount < 0:
-            raise ValidationError(
-                "Количетсво ингредиента не может быть отрицательным")
+        if ingredients:
+            amount = ingredients[0][1]
+            if amount < 0:
+                raise ValidationError(
+                    "Количетсво ингредиента не может быть отрицательным")
         return self.cleaned_data
