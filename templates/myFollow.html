@@ -42,7 +42,13 @@
                 </ul>
             </div>
             <div class="card-user__footer">
-                <button class="button button_style_light-blue button_size_auto" name="subscribe">Отписаться</button>
+                <div class="author-subscribe" data-author="{{ person.author.id }}">
+                    {% if person.author|is_following:request.user %}
+                       <button class="button button_style_light-blue button_size_auto" name="subscribe">Отписаться от автора</button>
+                    {% else %}
+                        <button class="button button_style_light-blue button_size_auto" name="subscribe" data-out>Подписаться на автора</button>
+                    {% endif %}
+                </div>
             </div>
         </div>
         {% endfor %}

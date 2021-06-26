@@ -5,18 +5,16 @@ from .models import Ingredient, RecipeIngredient, Tag
 
 
 def is_tag(request, all_recipes):
-    filters = request.GET.getlist("tag")
-    print(filters, request.path)
     if "tag" in request.GET:
-        name_tag = request.GET["tag"]
-        return name_tag, all_recipes.filter(tags__title=name_tag)
+        filters = request.GET.getlist("tag")
+        return filters, all_recipes.filter(tags__title__in=filters).distinct()
     return "", all_recipes
 
 
 def is_tag_favorite(request, favorites):
     if "tag" in request.GET:
-        name_tag = request.GET["tag"]
-        return name_tag, favorites.filter(recipe__tags__title=name_tag)
+        filters = request.GET.getlist("tag")
+        return filters, favorites.filter(recipe__tags__title__in=filters).distinct()
     return "", favorites
 
 

@@ -24,14 +24,12 @@ def get_paginator(request, data: QuerySet):
 def index(request):
     """Return the main page."""
     all_recipes = Recipe.objects.all()
-    name_tag, all_recipes = is_tag(request, all_recipes)
+    name_tags, all_recipes = is_tag(request, all_recipes)
     page = get_paginator(request, all_recipes)
     shop_list = ShopList.objects.all()
-    context = {"page": page, "tag": name_tag}
-
+    context = {"page": page, "tag": '&tag='.join(name_tags)}
     if request.user.is_authenticated:
         context.update({"shop_list": shop_list})
-
     return render(request, "index.html", context)
 
 
@@ -79,6 +77,7 @@ def edit_recipe(request, username: str, id_recipe: int):
         {"form": form, "edit": True, "id_recipe": id_recipe})
 
 
+@login_required
 def shop_list(request):
     """Return users's shop list."""
     shop_list = request.user.shop_list.all()
@@ -86,13 +85,14 @@ def shop_list(request):
     return render(request, "shopList.html", {"page": page})
 
 
+@login_required
 def favorite(request):
     """Return users's favorite recipes."""
     favorites = request.user.favorites.all()
-    name_tag, favorites = is_tag_favorite(request, favorites)
+    name_tags, favorites = is_tag_favorite(request, favorites)
     page = get_paginator(request, favorites)
-    return render(request, "favorite.html",
-                  {"page": page, "tag": name_tag})
+    context = {"page": page, "tag": '&tag='.join(name_tags)}
+    return render(request, "favorite.html", context)
 
 
 def single_recipe(request, id: int):
@@ -122,10 +122,9 @@ def author_recipe(request, id: int):
     """
     author = get_object_or_404(User, id=id)
     all_recipes = author.recipes.all()
-    name_tag, all_recipes = is_tag(request, all_recipes)
+    name_tags, all_recipes = is_tag(request, all_recipes)
     page = get_paginator(request, all_recipes)
-    context = {"author": author, "page": page, "tag": name_tag}
-
+    context = {"author": author, "page": page, "tag": '&tag='.join(name_tags)}
     if request.user.is_authenticated:
         am_i_follower = request.user.follower.filter(author=author).exists()
         context.update({"am_i_follower": am_i_follower})

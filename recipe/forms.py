@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 from .models import Recipe, RecipeIngredient
 from .utils import get_ingredients, get_tags
@@ -32,3 +33,10 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = ("title", "tags", "time_to_cook", "description", "image")
+
+    def clean(self):
+        ingredients = get_ingredients(self.data)
+        amount = ingredients[0][1]
+        if amount < 0:
+            raise ValidationError("Количетсво ингредиента не может быть отрицательным")
+        return self.cleaned_data

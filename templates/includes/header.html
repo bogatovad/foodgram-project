@@ -17,9 +17,7 @@
                 </li>
                 <li {% if request.resolver_match.url_name == 'shop_list' %}class="nav__item nav__item_active"{% else %}class="nav__item"{% endif %}>
                     <a href="{% url 'shop_list' %}" class="nav__link link">Список покупок</a> 
-                    <span class="badge badge_style_blue nav__badge" id="counter">
-                        {% if user.shop_list.count %}{{ user.shop_list.count }}{% endif %}
-                    </span>
+                    <span class="badge badge_style_blue nav__badge" id="counter">{% if user.shop_list.count %}{{ user.shop_list.count }}{% endif %}</span>
                 </li>
                 {% else %}
                 <li class="nav__item nav__item_disabled"><a href="#" class="nav__link link">Список покупок</a></li>

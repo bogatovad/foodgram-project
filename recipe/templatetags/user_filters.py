@@ -1,5 +1,7 @@
 from django import template
 
+from ..models import Follow
+
 register = template.Library()
 
 
@@ -16,3 +18,8 @@ def in_list(recipe, show_list):
 @register.filter
 def in_favorites_list(recipe_favorites, user):
     return recipe_favorites.filter(user=user).exists()
+
+
+@register.filter()
+def is_following(author, user):
+    return Follow.objects.filter(user=user, author=author).exists()
