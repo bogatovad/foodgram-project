@@ -14,7 +14,8 @@ def is_tag(request, all_recipes):
 def is_tag_favorite(request, favorites):
     if "tag" in request.GET:
         filters = request.GET.getlist("tag")
-        return filters, favorites.filter(recipe__tags__title__in=filters).distinct()
+        return (filters,
+                favorites.filter(recipe__tags__title__in=filters).distinct())
     return "", favorites
 
 
