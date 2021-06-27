@@ -22,7 +22,8 @@ def is_tag_favorite(request, favorites):
 def get_ingredients(data):
     return [(get_object_or_404(Ingredient, title__exact=data[item]),
              float(data[f"valueIngredient_{item[-1]}"].replace(',', '.')))
-            for item in data if item.startswith("nameIngredient_") and data[f"valueIngredient_{item[-1]}"]]
+            for item in data if item.startswith("nameIngredient_")
+            and data[f"valueIngredient_{item[-1]}"]]
 
 
 def get_tags(data):
@@ -49,11 +50,14 @@ def count_total_ingredients(shop_list: list):
         for ingredient in item.recipe.recipe_ingredients.all():
             print(ingredient)
             amount = ingredient.amount
-            if (ingredient.ingredient.title, ingredient.ingredient.unit) in result_ingredients:
+            if (ingredient.ingredient.title,
+                    ingredient.ingredient.unit) in result_ingredients:
                 result_ingredients[(
-                    ingredient.ingredient.title, ingredient.ingredient.unit)] += amount
+                    ingredient.ingredient.title,
+                    ingredient.ingredient.unit)] += amount
             else:
                 result_ingredients[(
-                    ingredient.ingredient.title, ingredient.ingredient.unit)] = amount
+                    ingredient.ingredient.title,
+                    ingredient.ingredient.unit)] = amount
 
     return result_ingredients
