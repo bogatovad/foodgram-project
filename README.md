@@ -1,9 +1,9 @@
 # Статус Workflow
 ![example workflow](https://github.com/bogatovad/foodgram-project/actions/workflows/foodgram_workflow.yml/badge.svg)
 ### foodgram-project
-http://178.154.197.184
+http://84.252.142.47/
 ### Админка для базы данных
-http://178.154.197.184/admin/
+http://84.252.142.47/admin/
 ### Описание
 Продуктовый помощник.
 Есть возможность создать и опубликовать свой рецепт,
