@@ -6,6 +6,8 @@ from .utils import get_ingredients, get_tags
 
 
 def create_ingredients(ingredients, recipe):
+    for ingredient in recipe.ingredients.all():
+        recipe.ingredients.remove(ingredient)
     for ingredient in ingredients:
         RecipeIngredient.objects.create(
             recipe=recipe,
@@ -36,8 +38,8 @@ class RecipeForm(forms.ModelForm):
 
     def clean(self):
         ingredients = get_ingredients(self.data)
-        if ingredients:
-            amount = ingredients[0][1]
+        for ing in ingredients:
+            amount = ing[1]
             if amount < 0:
                 raise ValidationError(
                     "Количетсво ингредиента не может быть отрицательным")

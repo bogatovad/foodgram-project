@@ -66,7 +66,6 @@ def edit_recipe(request, username: str, id_recipe: int):
         request.POST or None,
         files=request.FILES or None,
         instance=recipe)
-
     if form.is_valid():
         form.save()
         return redirect("index")
@@ -74,7 +73,7 @@ def edit_recipe(request, username: str, id_recipe: int):
     return render(
         request,
         "formRecipe.html",
-        {"form": form, "edit": True, "id_recipe": id_recipe})
+        {"form": form, "edit": True, "recipe": recipe})
 
 
 @login_required

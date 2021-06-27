@@ -30,5 +30,7 @@ https://docs.docker.com/get-docker/
 ```docker-compose exec webservice python manage.py migrate --noinput```
 ### Команда для сбора статики в одну папку
 ```docker-compose exec webservice python manage.py collectstatic --no-input```
+### Команда для заполнения ингридиентов
+```docker-compose exec webservice python manage.py fill_ingredients```
 ### Автор
 Артем Богатов

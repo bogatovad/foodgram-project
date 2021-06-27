@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Список покупок{% endblock %}
-
 {% block css %}
 <link rel="stylesheet" href="{% static 'pages/shopList.css' %}">
+<link rel="stylesheet" href="{% static 'pages/pagin_shop_list.css' %}">
 {% endblock %}
 {% block content %}
 <main class="main container">
@@ -28,6 +27,7 @@
                 <a href="#" class="shopping-list__button link">Удалить</a>
             </li>
             {% endfor %}
+            {% include 'paginator.html' %}
         </ul>
         <a href="{% url 'save_shop_list' %}"><button class="button button_style_blue">Скачать список</button></a>
     </div>

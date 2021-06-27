@@ -16,7 +16,7 @@
     </div>
     <div class="form-container">
         {% if edit %}
-        <form class="form" method="post" enctype="multipart/form-data" action="{% url 'edit_recipe' user id_recipe %}">
+        <form class="form" method="post" enctype="multipart/form-data" action="{% url 'edit_recipe' user recipe.id %}">
         {% else %}
         <form class="form" method="post" enctype="multipart/form-data" action="{% url 'create_recipe' %}">
         {% endif %}
@@ -55,6 +55,16 @@
                         <label for="cantidad" class="form__label" id="cantidadVal">шт.</label>
                     </div>
                     <div class="form__field-group-ingredientes-container">
+                        {% for ing in recipe.recipe_ingredients.all %}
+                            <div class="form__field-item-ingredient" id="ing_{{ forloop.counter }}">
+                                <span>
+                                    {{ ing.ingredient.title }} {{ ing.amount }} {{ ing.ingredient.unit }}
+                                </span> <span class="form__field-item-delete"></span>
+                                <input id="nameIngredient_{{ forloop.counter }}" name="nameIngredient_{{ forloop.counter }}" type="hidden" value="{{ ing.ingredient.title }}">
+                                <input id="valueIngredient_{{ forloop.counter }}" name="valueIngredient_{{ forloop.counter }}" type="hidden" value="{{ ing.amount }}">
+                                <input id="unitsIngredient_{{ forloop.counter }}" name="unitsIngredient_{{ forloop.counter }}" type="hidden" value="{{ ing.ingredient.unit }}">
+                            </div>
+                        {% endfor %}
                     </div>
                     <span class="form__ingredient-link" id="addIng">Добавить ингредиент</span>
                     {{ form.ingredients }}
@@ -82,12 +92,12 @@
                     <label for="id_image" class="form__file-button">Выбрать файл</label>
                     <input type="file" class="form__file" name="file" id="id_file">
                     <input type="file" name="image" class="form__file"  id="id_image">
-                    <span class="form__error"></span>
+                    <span class="form__error">{{ form.image.errors }}</span>
                 </div>
             </div>
             <div class="form__footer">
                 {% if edit %}
-                <button class="button button_style_blue">Сохранить</button> <a style="margin-left: 2.5em" href="{% url 'delete_recipe' id_recipe %}" class="form__ingredient-link">Удалить</a>
+                <button class="button button_style_blue">Сохранить</button> <a style="margin-left: 2.5em" href="{% url 'delete_recipe' recipe.id %}" class="form__ingredient-link">Удалить</a>
                 {% else %}
                 <button class="button button_style_blue">Создать рецепт</button>
                 {% endif %}
